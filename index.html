@@ -91,12 +91,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="买板子"><a href="#买板子" class="headerlink" title="买板子"></a>买板子</h2><p>官方标配有可能是单板（如下图）无工具包，记得买之前问一下客服。</p>
+        <h2 id="买板子"><a href="#买板子" class="headerlink" title="买板子"></a>买板子</h2><p>官方标配有可能是单板（如下图）无工具包，记得买之前问一下客服。<br>!(<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_1.png">https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_1.png</a>)</p>
 <h2 id="烧录"><a href="#烧录" class="headerlink" title="烧录"></a>烧录</h2><p>我直接用了<a target="_blank" rel="noopener" href="https://github.com/milkv-duo/duo-buildroot-sdk/releases">Releases · milkv-duo&#x2F;duo-buildroot-sdk</a>上的版本，因为本机为Windows，只能用Linux虚拟机编译，老师有提到电脑性能不够编译可能会太慢。所以担心借助虚拟机会卡住。但使用编译好的镜像有些配置无法更改，先暂时用着，后面需要可能会自己编译。</p>
 <p>跟视频里一致，使用<a target="_blank" rel="noopener" href="https://github.com/milkv-duo/duo-buildroot-sdk/releases/tag/Duo-V1.0.9">Duo-V1.0.9</a>，下载milkv-duo-v1.0.9-2024-0226.img.zip，在本地解压出img文件。</p>
 <p>在Windows下使用Win32 Disk Imager烧录。下载参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41432014/article/details/105479008">不分类工具：Win32 DiskImager安装教程_win32disklmager安装教程-CSDN博客</a></p>
 <p>烧录方法参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/Mr_LanGX/article/details/123338081">如何用Win32 Disk Imager烧录镜像到SD卡-CSDN博客</a></p>
-<p>写入完成后弹出需要格式化。则烧录成功。</p>
+<p>写入完成后弹出需要格式化。则烧录成功。<br>!(<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_2.png">https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_2.png</a>)</p>
 <h2 id="插板"><a href="#插板" class="headerlink" title="插板"></a>插板</h2><p>把sd卡插入板子，然后用usb插入电脑，红灯常亮，蓝灯不亮。此时设备管理器和Uart上都检测不到，原因找了好久。</p>
 <p>没有安装驱动？搜索了一些博客说驱动是Win自带的。</p>
 <p>最后猜测是版本问题，<a target="_blank" rel="noopener" href="https://milkv.io/zh/docs/duo/getting-started/setup">设置工作环境 | Milk-V</a>中设置工作环境提到默认启用CDC-NCM 和 DHCP的前提是版本达到v1.1.2及以上。</p>
@@ -105,16 +105,16 @@
 <p>格式化sd卡后重新烧录v1.1.3，milkv-duo-sd-v1.1.3-2024-0930.img.zip。插卡，蓝灯终于亮了！</p>
 <h2 id="设置工作环境"><a href="#设置工作环境" class="headerlink" title="设置工作环境"></a>设置工作环境</h2><p><a target="_blank" rel="noopener" href="https://milkv.io/zh/docs/duo/getting-started/setup">设置工作环境 | Milk-V</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1JQp3e7E53/?buvid=YF4444FDEE104C544DBE93CB43458B85ADE0&from_spmid=main.space-contribution.0.0&is_story_h5=false&mid=lxBewBCObnaudHkaU7mLxQ==&plat_id=116&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=E3A03D36-77DF-4468-A1A4-A4266CAB02BE&share_source=WEIXIN&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1731820655&unique_k=SpIrv0F&up_id=1829697&vd_source=9e188d9676b025f7d32650ba0646230c">【Milk-V Duo】最新镜像 USB Net 设置-手动安装 CDC-NCM 驱动_哔哩哔哩_bilibili</a></p>
-<p>CDC NCM设备出现在设备管理器中（终于出现了），显示为黄色的感叹号表示未安装驱动。</p>
+<p>CDC NCM设备出现在设备管理器中（终于出现了），显示为黄色的感叹号表示未安装驱动。<br>!(<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_1.png">https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_1.png</a>)</p>
 <p>选择 CDC NCM 后右键选择 更新驱动程序。</p>
 <p>选择 浏览我的电脑以查找驱动程序。</p>
 <p>选择 让我从计算机上的可用驱动程序列表中选取。</p>
-<p>选择 网络适配器。点击下一步。</p>
+<p>选择 网络适配器。点击下一步。<br>!(<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_3.png">https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_3.png</a>)</p>
 <p>在 弹出的 厂商 列表中选择 Microsoft，型号 中选择 UsbNcm Host Device。</p>
 <p>忽略警告信息。驱动程序安装成功。检查 网络适配器，UsbNcm Host Device 已经正常显示。</p>
-<p>打开Windows PowerShell使用 ping 命令测试。ping 192.168.42.1</p>
-<h2 id="SSH连接"><a href="#SSH连接" class="headerlink" title="SSH连接"></a>SSH连接</h2><p>打开终端，输入 ssh <a href="mailto:&#114;&#x6f;&#x6f;&#x74;&#64;&#49;&#x39;&#50;&#x2e;&#x31;&#x36;&#56;&#x2e;&#x34;&#x32;&#x2e;&#49;">&#114;&#x6f;&#x6f;&#x74;&#64;&#49;&#x39;&#50;&#x2e;&#x31;&#x36;&#56;&#x2e;&#x34;&#x32;&#x2e;&#49;</a>, 首次连接会有提示，直接输入 yes。</p>
-<p>输入密码 milkv (密码将不会显示)，登陆成功。</p>
+<p>打开Windows PowerShell使用 ping 命令测试。ping 192.168.42.1<br>!(<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_4.png">https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_4.png</a>)</p>
+<h2 id="SSH连接"><a href="#SSH连接" class="headerlink" title="SSH连接"></a>SSH连接</h2><p>打开终端，输入 ssh <a href="mailto:&#x72;&#x6f;&#x6f;&#x74;&#64;&#49;&#57;&#x32;&#x2e;&#49;&#x36;&#x38;&#46;&#52;&#50;&#46;&#49;">&#x72;&#x6f;&#x6f;&#x74;&#64;&#49;&#57;&#x32;&#x2e;&#49;&#x36;&#x38;&#46;&#52;&#50;&#46;&#49;</a>, 首次连接会有提示，直接输入 yes。</p>
+<p>输入密码 milkv (密码将不会显示)，登陆成功。<br>!(<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_5.png">https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_5.png</a>)</p>
 
       
     </div>
@@ -193,8 +193,7 @@ $ cd $HOME/ws
 <h2 id="第1章"><a href="#第1章" class="headerlink" title="第1章"></a>第1章</h2><h3 id="记录一个本人没听说过的架构"><a href="#记录一个本人没听说过的架构" class="headerlink" title="记录一个本人没听说过的架构"></a>记录一个本人没听说过的架构</h3><p>哈佛架构（就是它）：<br>指令和数据分开存储。优点是执行效率较高，缺点是总线开销更大，控制逻辑更复杂。在一些小型的微控制器、微处理器上，更倾向用哈佛架构。</p>
 <p>冯诺依曼架构（学计组时都是以冯诺依曼架构入门）：<br>指令和数据不加区别地存储在存储器中，经由同一个总线传输。优点是总线开销小，控制逻辑实现更简单；缺点是执行效率低。大型的服务器、台式机用冯诺依曼架构。</p>
 <h2 id="第2章"><a href="#第2章" class="headerlink" title="第2章"></a>第2章</h2><h3 id="模块化的-ISA"><a href="#模块化的-ISA" class="headerlink" title="模块化的 ISA"></a>模块化的 ISA</h3><p>模块化 ISA的定义: 由 1 个基本整数指令集 + 多个可选的扩展指令集组成。基础指令集是固定的，永远不会改变。</p>
-<h3 id="基本整数（Integer）指令集"><a href="#基本整数（Integer）指令集" class="headerlink" title="基本整数（Integer）指令集"></a>基本整数（Integer）指令集</h3><p>基本整数（Integer）指令集是唯一强制要求实现的基础指令集，其他指令集都是可选的扩展模块。</p>
-<p>!(<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/rvos_1.png">https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/rvos_1.png</a>)</p>
+<h3 id="基本整数（Integer）指令集"><a href="#基本整数（Integer）指令集" class="headerlink" title="基本整数（Integer）指令集"></a>基本整数（Integer）指令集</h3><p>基本整数（Integer）指令集是唯一强制要求实现的基础指令集，其他指令集都是可选的扩展模块。<br>!(<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/rvos_1.png">https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/rvos_1.png</a>)</p>
 <h3 id="扩展模块指令集"><a href="#扩展模块指令集" class="headerlink" title="扩展模块指令集"></a>扩展模块指令集</h3><p>RISC-V 允许在实现中以可选的形式实现其他标准化和非标准化的指令集扩展。<br>!(<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/rvos_2.png">https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/rvos_2.png</a>)</p>
 <h4 id="特定组合“IMAFD”被称为-“通用（General）”组合，用英文字母-G-表示。（在某场面试中被问到过）"><a href="#特定组合“IMAFD”被称为-“通用（General）”组合，用英文字母-G-表示。（在某场面试中被问到过）" class="headerlink" title="特定组合“IMAFD”被称为 “通用（General）”组合，用英文字母 G 表示。（在某场面试中被问到过）"></a>特定组合“IMAFD”被称为 “通用（General）”组合，用英文字母 G 表示。（在某场面试中被问到过）</h4><h2 id="第3章-第4章"><a href="#第3章-第4章" class="headerlink" title="第3章~第4章"></a>第3章~第4章</h2><p>课程和ppt上讲得很详细，暂未有疑虑之处。</p>
 <h2 id="第5章"><a href="#第5章" class="headerlink" title="第5章"></a>第5章</h2><h3 id="RISC-V-汇编指令操作对象"><a href="#RISC-V-汇编指令操作对象" class="headerlink" title="RISC-V 汇编指令操作对象"></a>RISC-V 汇编指令操作对象</h3><p>寄存器：</p>

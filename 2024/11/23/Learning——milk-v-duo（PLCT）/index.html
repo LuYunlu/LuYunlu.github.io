@@ -6,15 +6,15 @@
   
   <title>学习笔记——milk-v duo上手 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="买板子官方标配有可能是单板（如下图）无工具包，记得买之前问一下客服。 烧录我直接用了Releases · milkv-duo&#x2F;duo-buildroot-sdk上的版本，因为本机为Windows，只能用Linux虚拟机编译，老师有提到电脑性能不够编译可能会太慢。所以担心借助虚拟机会卡住。但使用编译好的镜像有些配置无法更改，先暂时用着，后面需要可能会自己编译。 跟视频里一致，使用Duo-V">
+  <meta name="description" content="买板子官方标配有可能是单板（如下图）无工具包，记得买之前问一下客服。!(https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;LuYunlu&#x2F;Pictures&#x2F;refs&#x2F;heads&#x2F;main&#x2F;milkvduo_1.png) 烧录我直接用了Releases · milkv-duo&#x2F;duo-buildroot-sdk上的版本，因为本机为Windows，只能用Linux虚拟机编译">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习笔记——milk-v duo上手">
 <meta property="og:url" content="http://example.com/2024/11/23/Learning%E2%80%94%E2%80%94milk-v-duo%EF%BC%88PLCT%EF%BC%89/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="买板子官方标配有可能是单板（如下图）无工具包，记得买之前问一下客服。 烧录我直接用了Releases · milkv-duo&#x2F;duo-buildroot-sdk上的版本，因为本机为Windows，只能用Linux虚拟机编译，老师有提到电脑性能不够编译可能会太慢。所以担心借助虚拟机会卡住。但使用编译好的镜像有些配置无法更改，先暂时用着，后面需要可能会自己编译。 跟视频里一致，使用Duo-V">
+<meta property="og:description" content="买板子官方标配有可能是单板（如下图）无工具包，记得买之前问一下客服。!(https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;LuYunlu&#x2F;Pictures&#x2F;refs&#x2F;heads&#x2F;main&#x2F;milkvduo_1.png) 烧录我直接用了Releases · milkv-duo&#x2F;duo-buildroot-sdk上的版本，因为本机为Windows，只能用Linux虚拟机编译">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-11-23T13:32:12.000Z">
-<meta property="article:modified_time" content="2024-11-23T13:41:02.740Z">
+<meta property="article:modified_time" content="2024-11-23T14:15:18.625Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -93,12 +93,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="买板子"><a href="#买板子" class="headerlink" title="买板子"></a>买板子</h2><p>官方标配有可能是单板（如下图）无工具包，记得买之前问一下客服。</p>
+        <h2 id="买板子"><a href="#买板子" class="headerlink" title="买板子"></a>买板子</h2><p>官方标配有可能是单板（如下图）无工具包，记得买之前问一下客服。<br>!(<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_1.png">https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_1.png</a>)</p>
 <h2 id="烧录"><a href="#烧录" class="headerlink" title="烧录"></a>烧录</h2><p>我直接用了<a target="_blank" rel="noopener" href="https://github.com/milkv-duo/duo-buildroot-sdk/releases">Releases · milkv-duo&#x2F;duo-buildroot-sdk</a>上的版本，因为本机为Windows，只能用Linux虚拟机编译，老师有提到电脑性能不够编译可能会太慢。所以担心借助虚拟机会卡住。但使用编译好的镜像有些配置无法更改，先暂时用着，后面需要可能会自己编译。</p>
 <p>跟视频里一致，使用<a target="_blank" rel="noopener" href="https://github.com/milkv-duo/duo-buildroot-sdk/releases/tag/Duo-V1.0.9">Duo-V1.0.9</a>，下载milkv-duo-v1.0.9-2024-0226.img.zip，在本地解压出img文件。</p>
 <p>在Windows下使用Win32 Disk Imager烧录。下载参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41432014/article/details/105479008">不分类工具：Win32 DiskImager安装教程_win32disklmager安装教程-CSDN博客</a></p>
 <p>烧录方法参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/Mr_LanGX/article/details/123338081">如何用Win32 Disk Imager烧录镜像到SD卡-CSDN博客</a></p>
-<p>写入完成后弹出需要格式化。则烧录成功。</p>
+<p>写入完成后弹出需要格式化。则烧录成功。<br>!(<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_2.png">https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_2.png</a>)</p>
 <h2 id="插板"><a href="#插板" class="headerlink" title="插板"></a>插板</h2><p>把sd卡插入板子，然后用usb插入电脑，红灯常亮，蓝灯不亮。此时设备管理器和Uart上都检测不到，原因找了好久。</p>
 <p>没有安装驱动？搜索了一些博客说驱动是Win自带的。</p>
 <p>最后猜测是版本问题，<a target="_blank" rel="noopener" href="https://milkv.io/zh/docs/duo/getting-started/setup">设置工作环境 | Milk-V</a>中设置工作环境提到默认启用CDC-NCM 和 DHCP的前提是版本达到v1.1.2及以上。</p>
@@ -107,16 +107,16 @@
 <p>格式化sd卡后重新烧录v1.1.3，milkv-duo-sd-v1.1.3-2024-0930.img.zip。插卡，蓝灯终于亮了！</p>
 <h2 id="设置工作环境"><a href="#设置工作环境" class="headerlink" title="设置工作环境"></a>设置工作环境</h2><p><a target="_blank" rel="noopener" href="https://milkv.io/zh/docs/duo/getting-started/setup">设置工作环境 | Milk-V</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1JQp3e7E53/?buvid=YF4444FDEE104C544DBE93CB43458B85ADE0&from_spmid=main.space-contribution.0.0&is_story_h5=false&mid=lxBewBCObnaudHkaU7mLxQ==&plat_id=116&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=E3A03D36-77DF-4468-A1A4-A4266CAB02BE&share_source=WEIXIN&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1731820655&unique_k=SpIrv0F&up_id=1829697&vd_source=9e188d9676b025f7d32650ba0646230c">【Milk-V Duo】最新镜像 USB Net 设置-手动安装 CDC-NCM 驱动_哔哩哔哩_bilibili</a></p>
-<p>CDC NCM设备出现在设备管理器中（终于出现了），显示为黄色的感叹号表示未安装驱动。</p>
+<p>CDC NCM设备出现在设备管理器中（终于出现了），显示为黄色的感叹号表示未安装驱动。<br>!(<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_1.png">https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_1.png</a>)</p>
 <p>选择 CDC NCM 后右键选择 更新驱动程序。</p>
 <p>选择 浏览我的电脑以查找驱动程序。</p>
 <p>选择 让我从计算机上的可用驱动程序列表中选取。</p>
-<p>选择 网络适配器。点击下一步。</p>
+<p>选择 网络适配器。点击下一步。<br>!(<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_3.png">https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_3.png</a>)</p>
 <p>在 弹出的 厂商 列表中选择 Microsoft，型号 中选择 UsbNcm Host Device。</p>
 <p>忽略警告信息。驱动程序安装成功。检查 网络适配器，UsbNcm Host Device 已经正常显示。</p>
-<p>打开Windows PowerShell使用 ping 命令测试。ping 192.168.42.1</p>
-<h2 id="SSH连接"><a href="#SSH连接" class="headerlink" title="SSH连接"></a>SSH连接</h2><p>打开终端，输入 ssh <a href="mailto:&#114;&#x6f;&#x6f;&#x74;&#64;&#49;&#x39;&#50;&#x2e;&#x31;&#x36;&#56;&#x2e;&#x34;&#x32;&#x2e;&#49;">&#114;&#x6f;&#x6f;&#x74;&#64;&#49;&#x39;&#50;&#x2e;&#x31;&#x36;&#56;&#x2e;&#x34;&#x32;&#x2e;&#49;</a>, 首次连接会有提示，直接输入 yes。</p>
-<p>输入密码 milkv (密码将不会显示)，登陆成功。</p>
+<p>打开Windows PowerShell使用 ping 命令测试。ping 192.168.42.1<br>!(<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_4.png">https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_4.png</a>)</p>
+<h2 id="SSH连接"><a href="#SSH连接" class="headerlink" title="SSH连接"></a>SSH连接</h2><p>打开终端，输入 ssh <a href="mailto:&#x72;&#x6f;&#x6f;&#x74;&#64;&#49;&#57;&#x32;&#x2e;&#49;&#x36;&#x38;&#46;&#52;&#50;&#46;&#49;">&#x72;&#x6f;&#x6f;&#x74;&#64;&#49;&#57;&#x32;&#x2e;&#49;&#x36;&#x38;&#46;&#52;&#50;&#46;&#49;</a>, 首次连接会有提示，直接输入 yes。</p>
+<p>输入密码 milkv (密码将不会显示)，登陆成功。<br>!(<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_5.png">https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_5.png</a>)</p>
 
       
     </div>
