@@ -83,7 +83,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/11/23/Learning%E2%80%94%E2%80%94milk-v-duo%EF%BC%88PLCT%EF%BC%89/">学习笔记——milk-v duo上手</a>
+      <a class="p-name article-title" href="/2024/11/23/Learning%E2%80%94%E2%80%94milk-v-duo%EF%BC%88PLCT%EF%BC%89/">学习笔记————milk-v duo上手</a>
     </h1>
   
 
@@ -113,13 +113,13 @@
 <p>在 弹出的 厂商 列表中选择 Microsoft，型号 中选择 UsbNcm Host Device。</p>
 <p>忽略警告信息。驱动程序安装成功。检查 网络适配器，UsbNcm Host Device 已经正常显示。</p>
 <p>打开Windows PowerShell使用 ping 命令测试。ping 192.168.42.1<br>!(<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_4.png">https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_4.png</a>)</p>
-<h2 id="SSH连接"><a href="#SSH连接" class="headerlink" title="SSH连接"></a>SSH连接</h2><p>打开终端，输入 ssh <a href="mailto:&#x72;&#x6f;&#x6f;&#x74;&#64;&#49;&#57;&#x32;&#x2e;&#49;&#x36;&#x38;&#46;&#52;&#50;&#46;&#49;">&#x72;&#x6f;&#x6f;&#x74;&#64;&#49;&#57;&#x32;&#x2e;&#49;&#x36;&#x38;&#46;&#52;&#50;&#46;&#49;</a>, 首次连接会有提示，直接输入 yes。</p>
+<h2 id="SSH连接"><a href="#SSH连接" class="headerlink" title="SSH连接"></a>SSH连接</h2><p>打开终端，输入 ssh <a href="mailto:&#x72;&#111;&#x6f;&#x74;&#64;&#49;&#57;&#x32;&#x2e;&#49;&#54;&#x38;&#46;&#x34;&#x32;&#46;&#49;">&#x72;&#111;&#x6f;&#x74;&#64;&#49;&#57;&#x32;&#x2e;&#49;&#54;&#x38;&#46;&#x34;&#x32;&#46;&#49;</a>, 首次连接会有提示，直接输入 yes。</p>
 <p>输入密码 milkv (密码将不会显示)，登陆成功。<br>!(<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_5.png">https://raw.githubusercontent.com/LuYunlu/Pictures/refs/heads/main/milkvduo_5.png</a>)</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/11/23/Learning%E2%80%94%E2%80%94milk-v-duo%EF%BC%88PLCT%EF%BC%89/" data-id="cm3u7mf00000014ub5l4wfh4i" data-title="学习笔记——milk-v duo上手" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/11/23/Learning%E2%80%94%E2%80%94milk-v-duo%EF%BC%88PLCT%EF%BC%89/" data-id="cm3u7mf00000014ub5l4wfh4i" data-title="学习笔记————milk-v duo上手" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -145,7 +145,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/11/16/Learning%E2%80%94%E2%80%94Develop%20RISC-V%20OS%EF%BC%88PLCT%20Mr.Wang%EF%BC%89/">学习笔记——开发RISC-V上的操作系统（PLCT汪辰）</a>
+      <a class="p-name article-title" href="/2024/11/16/Learning%E2%80%94%E2%80%94Develop%20RISC-V%20OS%EF%BC%88PLCT%20Mr.Wang%EF%BC%89/">学习笔记——开发RISC-V上的操作系统（PLCT）</a>
     </h1>
   
 
@@ -153,7 +153,8 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="第0章"><a href="#第0章" class="headerlink" title="第0章"></a>第0章</h2><h3 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h3><p>git clone <a target="_blank" rel="noopener" href="https://gitee.com/unicornx/riscv-operating-system-mooc.git">https://gitee.com/unicornx/riscv-operating-system-mooc.git</a></p>
+        <p>主要记录视频学习过程中自己不容易记住的一些点，没提到的部分课程资料都写得很详细。</p>
+<h2 id="第0章"><a href="#第0章" class="headerlink" title="第0章"></a>第0章</h2><h3 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h3><p>git clone <a target="_blank" rel="noopener" href="https://gitee.com/unicornx/riscv-operating-system-mooc.git">https://gitee.com/unicornx/riscv-operating-system-mooc.git</a></p>
 <h3 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h3><p>推荐使用 Ubuntu 20.04，Ubuntu 20.04 是目前最新的 Ubuntu 长期稳定发行版，在这个环境下安装运行环境也最简单。</p>
 <p>有些同学向汪老师反映希望仍然使用Ubuntu 18.04，因为 Ubunt 18.04 的官方源还不支持 RISC-V 的开发工具包，所以搭建环境稍微复杂一些，PLCT实验室写了一个简单的说明文档，感兴趣的同学可以看 这里。</p>
 <p>所有演示代码在以下环境下验证通过，请仔细核对你的 Ubuntu 版本和内核版本与以下信息是否一致。</p>
@@ -223,7 +224,7 @@ $ cd $HOME/ws
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/11/16/Learning%E2%80%94%E2%80%94Develop%20RISC-V%20OS%EF%BC%88PLCT%20Mr.Wang%EF%BC%89/" data-id="cm3jlj62y0000g0ubdhtvd2c0" data-title="学习笔记——开发RISC-V上的操作系统（PLCT汪辰）" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/11/16/Learning%E2%80%94%E2%80%94Develop%20RISC-V%20OS%EF%BC%88PLCT%20Mr.Wang%EF%BC%89/" data-id="cm3jlj62y0000g0ubdhtvd2c0" data-title="学习笔记——开发RISC-V上的操作系统（PLCT）" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -317,11 +318,11 @@ $ cd $HOME/ws
       <ul>
         
           <li>
-            <a href="/2024/11/23/Learning%E2%80%94%E2%80%94milk-v-duo%EF%BC%88PLCT%EF%BC%89/">学习笔记——milk-v duo上手</a>
+            <a href="/2024/11/23/Learning%E2%80%94%E2%80%94milk-v-duo%EF%BC%88PLCT%EF%BC%89/">学习笔记————milk-v duo上手</a>
           </li>
         
           <li>
-            <a href="/2024/11/16/Learning%E2%80%94%E2%80%94Develop%20RISC-V%20OS%EF%BC%88PLCT%20Mr.Wang%EF%BC%89/">学习笔记——开发RISC-V上的操作系统（PLCT汪辰）</a>
+            <a href="/2024/11/16/Learning%E2%80%94%E2%80%94Develop%20RISC-V%20OS%EF%BC%88PLCT%20Mr.Wang%EF%BC%89/">学习笔记——开发RISC-V上的操作系统（PLCT）</a>
           </li>
         
           <li>
