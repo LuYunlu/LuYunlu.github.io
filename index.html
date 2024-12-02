@@ -69,6 +69,181 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-AutoOS代码解读" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/12/02/AutoOS%E4%BB%A3%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="article-date">
+  <time class="dt-published" datetime="2024-12-02T03:37:17.000Z" itemprop="datePublished">2024-12-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/12/02/AutoOS%E4%BB%A3%E7%A0%81%E8%A7%A3%E8%AF%BB/">AutoOS代码解读</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>代码GitHub地址：<a target="_blank" rel="noopener" href="https://github.com/xuewuyinhe/AutoOS/tree/main">https://github.com/xuewuyinhe/AutoOS/tree/main</a></p>
+<h1 id="代码目录结构："><a href="#代码目录结构：" class="headerlink" title="代码目录结构："></a>代码目录结构：</h1><pre><code>AutoOS
+    optimizied_results
+        fedora_config_optimizied.txt
+        fedora_config_origin.txt
+        polyos_config_optimizied.txt
+        polyos_config_origin.txt
+        readme.txt
+        ubuntu22_04_config_optimizied.txt
+        ubuntu22_04_config_origin.txt
+    append.py
+    AutoOS.py
+    counter.txt
+    init_env.sh
+    key.txt
+    menuconfig.py
+    README.md
+</code></pre>
+<p>optimized_result目录：存放默认配置文件和AutoOS优化后的配置文件</p>
+<p>append.py：根据output.txt中的内容生成配置文件，并将其复制到目标文件中。</p>
+<p>AutoOS.py：核心功能模块。用于与OpenAI的ChatGPT模型进行交互，以探索和优化配置Linux内核的选项。</p>
+<p>counter.txt：存放AutoOS.py中用到的计数器的值，计数器计数当前一轮Unixbench测试已运行的优化目标的数量。</p>
+<p>init_env.sh：初始环境变量配置文件</p>
+<p>key.txt：存放LLM API密钥</p>
+<p>menuconfig.py：提供操作Kconfig配置文件的命令行界面，支持查看和修改配置项的可见性和值。</p>
+<h1 id="Python脚本解读："><a href="#Python脚本解读：" class="headerlink" title="Python脚本解读："></a>Python脚本解读：</h1><h2 id="一、AutoOS-py"><a href="#一、AutoOS-py" class="headerlink" title="一、AutoOS.py"></a>一、AutoOS.py</h2><p>AutoOS.py脚本用于与OpenAI的ChatGPT模型进行交互。通过交互，AutoOS自动化地探索和配置Linux内核的选项，以优化特定的性能指标。</p>
+<p>AutoOS.py的主要内容由6部分组成：</p>
+<ol>
+<li>Chat类：<ul>
+<li>“_<em>init</em>_”：初始化对话列表、费用列表和布尔变量。</li>
+<li>“show_conversation”：打印最近的两条对话消息。</li>
+<li>“last_step”：从对话列表中删除最近的几条消息。</li>
+<li>“ask”：用于向 OpenAI 发送一个 prompt 并获取响应。</li>
+</ul>
+</li>
+<li>total_counts函数：<ul>
+<li>根据使用的token数量计算与 OpenAI API 交互的费用，并返回该费用。</li>
+</ul>
+</li>
+<li>auto_counter类：<ul>
+<li>用于管理一个计数器，该计数器的值存储在一个名为”counter.txt”的文件中。auto_counter类能够在counter.txt中存储和更新计数值，并在文件不存在时自动创建文件并初始化计数值。该计数器的含义是Unixbench测试的优化目标数量。共有8个target，计数器值为x表示当前轮次已优化到第x个target。x为8时重新清零，以便下一轮测试。</li>
+<li>“_<em>init</em>_”：初始化计数器的最大值为8。</li>
+<li>“create_file”：创建名为counter.txt的计数器文件，并写入初始值0。</li>
+<li>“read_and_increment”：读取counter.txt文件中的当前计数值，将其递增，然后将新的计数值写回文件。</li>
+</ul>
+</li>
+<li>全局变量：<ul>
+<li>“mode”、”de”、”we”、”save_cycle”：用于控制程序的行为和输出。</li>
+</ul>
+</li>
+<li>main函数：<ul>
+<li>核心功能函数。通过与OpenAI的API交互来探索和修改Linux内核的配置选项。</li>
+<li>（1）读取API密钥。</li>
+<li>（2）初始化优化目标和配置</li>
+<li>（3）初始化与OpenAI的对话API和选项字典。</li>
+<li>（4）定义正则表达式，用于后续解析和处理配置选项。</li>
+<li>（5）主循环：</li>
+<li>①使用正则表达式解析和处理当前目录下的配置选项</li>
+<li>②与OpenAI的API进行交互，获取推荐的配置选项。</li>
+<li>③通过一个内部循环，逐个处理选项集中的选项。根据选项类型，生成相应的提示信息，并通过 talk.ask 方法获取推荐的选项设置。解析API返回的结果，更新选项的状态，并将结果存储在 result、result_notchange、result2 等字典中。</li>
+<li>④将结果保存到文件中。</li>
+</ul>
+</li>
+<li>程序入口：<ul>
+<li>使用”fire”库将”main”函数暴露为命令行接口。</li>
+</ul>
+</li>
+</ol>
+<h2 id="二、append-py"><a href="#二、append-py" class="headerlink" title="二、append.py"></a>二、append.py</h2><p>append.py脚本从”output.txt”的文件中读取内容，并根据特定的正则表达式模式对内容进行解析生成配置文件，然后将配置文件复制到目标文件中。</p>
+<p>append.py的主要内容由5部分组成：</p>
+<ol>
+<li>定义文件路径、创建目标目录</li>
+<li>复制文件</li>
+<li>正则表达式模式匹配</li>
+<li>读取和处理 “output.txt” 文件</li>
+<li>关闭输入和输出文件</li>
+</ol>
+<h2 id="三、menuconfig-py"><a href="#三、menuconfig-py" class="headerlink" title="三、menuconfig.py"></a>三、menuconfig.py</h2><p>menuconfig.py脚本定义了一个名为MenuConfig的类，提供一个命令行界面来操作Kconfig配置文件，支持查看和修改配置项的可见性和值。通过“run”方法，用户可以执行一系列命令来操作配置文件，如加载、保存、查看节点、设置值等。</p>
+<p>AutoOS论文中提到，现有的Linux内核源代码仅以图形界面提供内核配置交互功能，这阻碍了LLM与OS内核配置的直接交互。而“kconfiglib”库提供了类似于界面的命令行交互形式。因此，AutoOS通过对kconfiglib库进行轻微的工程修改，抽象了一系列原子API，用于基于代码的动态树操作，以优化配置文件选项。<br>AutoOS对kconfiglib库的修改就是通过menuconfig.py实现的。</p>
+<p>如果计算导入模块，menuconfig.py的主要内容由2部分组成：</p>
+<ol>
+<li>导入模块<ul>
+<li>导入用于解析和操作Kconfig文件的库”kconfiglib”（必需），对其中的API进行抽象和修改。</li>
+</ul>
+</li>
+<li>MenuConfig类</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/12/02/AutoOS%E4%BB%A3%E7%A0%81%E8%A7%A3%E8%AF%BB/" data-id="cm46ht51g000088ub52uperd4" data-title="AutoOS代码解读" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-AutoOS论文解读" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/12/02/AutoOS%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/" class="article-date">
+  <time class="dt-published" datetime="2024-12-02T03:32:26.000Z" itemprop="datePublished">2024-12-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/12/02/AutoOS%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/">AutoOS论文解读</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="AutoOS-Make-Your-OS-More-Powerful-by-Exploiting-Large-Language-Models"><a href="#AutoOS-Make-Your-OS-More-Powerful-by-Exploiting-Large-Language-Models" class="headerlink" title="AutoOS: Make Your OS More Powerful by Exploiting Large Language Models"></a>AutoOS: Make Your OS More Powerful by Exploiting Large Language Models</h1><h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><p>AIoT快速发展使其应用场景广泛增加，如何最大化AIoT开发板性能对用户体验至关重要。</p>
+<p>AutoOS框架利用LLM自动定制和优化OS内核配置文件。AutoOS优化后的配置文件比供应商提供的默认配置文件和基于默认配置文件手动定制后的配置文件在AIoT开发板上性能更好，启动失败概率更低。</p>
+<h1 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h1><p>利用OS内核配置固有的树状结构特性，将内核配置文件的优化问题转化为在动态树上的优化问题。配置空间可以概念化为动态树结构。配置选项组合的变化导致树的动态变换，不可选择的选项类似于分支删除，新可选择的选项类似于分支插入。</p>
+<p>基于以上，引入一个基于状态机的框架AutoOS来对OS内核配置空间进行操作。</p>
+<p>AutoOS包含五个阶段：观察observe-修剪prune-提议propose-行动act-纠正correct。前四个阶段使用具有随机性的动态树遍历算法，探索内核配置选项可能提高性能的潜在组合；同时通过剪枝策略，避免潜在组合包含影响系统启动的选项并修剪冗余和不相关的选项。纠正阶段通过一个调试过程，以确保候选配置可用于成功启动OS。</p>
+<h1 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h1><h2 id="Experimental-Setup"><a href="#Experimental-Setup" class="headerlink" title="Experimental Setup"></a>Experimental Setup</h2><p>在三个操作系统PolyOS、Fedora和Ubuntu内核配置任务上评估AutoOS。PolyOS和Fedora在AIoT开发板上测试，Ubuntu在PC上测试。PolyOS的Benchmark是UnixBench和LMbench，Fedora和Ubuntu的benchmark是UnixBench。</p>
+<p>Comparison baselines有两个：Default和LLM-Vanilla。Default即供应商提供的或每个操作系统的默认内核配置；LLM-Vanilla是向LLM给出Default，直接提示LLM优化操作系统Default内核配置得到的配置文件。</p>
+<h2 id="通用场景即PC下的实验方法"><a href="#通用场景即PC下的实验方法" class="headerlink" title="通用场景即PC下的实验方法"></a>通用场景即PC下的实验方法</h2><p>三类配置文件的生成：</p>
+<p>①default：由Linux内核make menuconfig得到</p>
+<p>②LLM-Vanilla：向chatgpt给出Default config，并提问如何修改配置选项以获得更好的性能。由于提示token的限制，chatgpt只能列出较少数量的配置名称。然而配置优化是全局性问题，chatgpt只修改少量配置可能适得其反，导致性能比Default config还差。</p>
+<p>③AutoOS优化的config：运行AutoOS.py和append.py，然后make menuconfig得到。</p>
+<p>利用这三个配置文件编译Linux内核，并执行UnixBench性能测试跑分，将得到的分数进行对比。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/12/02/AutoOS%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/" data-id="cm46ht51k000188ubd0ym4pdb" data-title="AutoOS论文解读" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Learning——milk-v-duo（PLCT）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/11/23/Learning%E2%80%94%E2%80%94milk-v-duo%EF%BC%88PLCT%EF%BC%89/" class="article-date">
@@ -305,7 +480,7 @@ $ cd $HOME/ws
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li></ul>
     </div>
   </div>
 
@@ -316,6 +491,14 @@ $ cd $HOME/ws
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/12/02/AutoOS%E4%BB%A3%E7%A0%81%E8%A7%A3%E8%AF%BB/">AutoOS代码解读</a>
+          </li>
+        
+          <li>
+            <a href="/2024/12/02/AutoOS%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/">AutoOS论文解读</a>
+          </li>
         
           <li>
             <a href="/2024/11/23/Learning%E2%80%94%E2%80%94milk-v-duo%EF%BC%88PLCT%EF%BC%89/">学习笔记————milk-v duo上手</a>
